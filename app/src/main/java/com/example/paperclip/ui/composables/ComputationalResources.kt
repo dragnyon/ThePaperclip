@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun ComputationalResources(
-    modifier: Modifier,
     nbTrust: Int = 0,
     checkpointTrust: Int = 0,
     levelProcessor: Int = 0,
@@ -21,7 +20,7 @@ fun ComputationalResources(
     onClickAddProcessor: () -> Unit = {},
     onClickAddMemory: () -> Unit = {},
 ) {
-    Column(modifier = modifier) {
+    Column() {
         Text(
             text = "Trust : \$ $nbTrust"
         )

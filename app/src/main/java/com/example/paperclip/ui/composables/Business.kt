@@ -1,17 +1,20 @@
 package com.example.paperclip.ui.composables
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Business(
-    modifier: Modifier,
     funds: Double = 0.0,
     unsold: Int = 0,
     price: Double = 0.0,
@@ -24,7 +27,9 @@ fun Business(
     avgRev: Double = 0.0,
     avgClipsSold: Int = 0
 ) {
-    Column(modifier = modifier) {
+    Column(
+        horizontalAlignment = Alignment.End
+    ) {
         Text(
             text = "Business"
         )
@@ -43,11 +48,23 @@ fun Business(
             text = "Unsold Inventory: $unsold"
         )
 
-        Row {
-            FilledTonalButton(onClick = onClickLower) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            FilledTonalButton(
+                modifier = Modifier
+                    .height(25.dp),
+                contentPadding = PaddingValues(0.dp),
+                onClick = onClickLower
+            ) {
                 Text("Lower")
             }
-            FilledTonalButton(onClick = onClickRaise) {
+            FilledTonalButton(
+                modifier = Modifier
+                    .height(25.dp),
+                contentPadding = PaddingValues(0.dp),
+                onClick = onClickRaise
+            ) {
                 Text("Raise")
             }
             Text(

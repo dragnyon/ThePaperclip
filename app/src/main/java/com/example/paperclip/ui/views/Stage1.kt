@@ -1,11 +1,8 @@
 package com.example.paperclip.ui.views
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -26,40 +23,22 @@ fun Stage1(
 ) {
     var paperclips by remember { mutableIntStateOf(0) }
 
-    Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
+    Column(Modifier.verticalScroll(rememberScrollState())) {
+        Paperclips(
+            nbPaperclips = paperclips,
+            onClickMakePaperclips = { paperclips++ }
+        )
+        Business()
+        Manufacturing()
 
-    ) { innerPadding ->
+        ComputationalResources()
+        ProjectsList(
+            projects.take(3)
+        )
 
-        Column(Modifier.verticalScroll(rememberScrollState())) {
-            Paperclips(
-                modifier = Modifier.padding(innerPadding),
-                nbPaperclips = paperclips,
-                onClickMakePaperclips = { paperclips++ }
-            )
-            Business(
-                modifier = Modifier.padding(innerPadding)
+        Investments(
 
-            )
-            Manufacturing(
-                modifier = Modifier.padding(innerPadding)
-            )
-
-            ComputationalResources(
-                modifier = Modifier.padding(innerPadding)
-
-            )
-            ProjectsList(
-                projects.take(3)
-            )
-
-            Investments(
-
-            )
-
-
-        }
+        )
     }
 }
 

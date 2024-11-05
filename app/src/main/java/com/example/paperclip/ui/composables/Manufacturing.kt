@@ -6,12 +6,12 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Manufacturing(
-    modifier: Modifier,
     clipsPerSecond: Int = 0,
     wires: Int = 0,
     onClickWire: () -> Unit = {},
@@ -25,7 +25,9 @@ fun Manufacturing(
     onClickWireBuyer: () -> Unit = {},
     stateWireBuyer: Boolean = false,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        horizontalAlignment = Alignment.End
+    ) {
         Text(
             text = "Manufacturing"
         )
