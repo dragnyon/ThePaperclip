@@ -12,12 +12,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.paperclip.ui.composables.Business
-import com.example.paperclip.ui.composables.Manufacturing
-import com.example.paperclip.ui.composables.Paperclips
 import com.example.paperclip.ui.composables.common.PopupsMenu
-import com.example.paperclip.ui.composables.messagesBox.MessageBox
 import com.example.paperclip.ui.theme.PaperClipTheme
+import com.example.paperclip.ui.views.Stage1
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +33,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding)
                     ) {
                         Column {
-                            MessageBox()
-                            Paperclips()
-                            Business()
-                            Manufacturing()
+                            Stage1()
                         }
                         PopupsMenu()
                     }

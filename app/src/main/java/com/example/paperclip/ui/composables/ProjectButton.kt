@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,7 +27,6 @@ fun ProjectButton(project: Project, selectable: Boolean = false) {
 
     val fontColor = if (selectable) Color.Black else Color.Gray
     var boxModifier = Modifier
-        .background(Color.LightGray)
         .height(100.dp)
 
     if (selectable) {

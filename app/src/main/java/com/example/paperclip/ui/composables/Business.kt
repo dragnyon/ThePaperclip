@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -27,9 +26,7 @@ fun Business(
     avgRev: Double = 0.0,
     avgClipsSold: Int = 0
 ) {
-    Column(
-        horizontalAlignment = Alignment.End
-    ) {
+    Column() {
         Text(
             text = "Business"
         )
