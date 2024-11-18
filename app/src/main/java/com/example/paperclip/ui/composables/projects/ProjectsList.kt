@@ -1,4 +1,4 @@
-package com.example.paperclip.ui.composables
+package com.example.paperclip.ui.composables.projects
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -10,9 +10,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.paperclip.data.projects
+import com.example.paperclip.domain.models.Project
 import com.example.paperclip.ui.theme.PaperClipTheme
-import com.example.paperclip.ui.views.Project
-import com.example.paperclip.ui.views.projects
 
 
 @Composable

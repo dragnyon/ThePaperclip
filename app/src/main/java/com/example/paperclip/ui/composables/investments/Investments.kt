@@ -1,4 +1,4 @@
-package fr.dlecol.paperclips.Investments
+package com.example.paperclip.ui.composables.investments
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fr.dlecol.paperclips.Investments.CashManager
+import fr.dlecol.paperclips.Investments.UpgradeManager
 
 @Composable
 fun Investments() {

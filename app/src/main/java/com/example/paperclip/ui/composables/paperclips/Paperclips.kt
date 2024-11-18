@@ -1,13 +1,14 @@
-package com.example.paperclip.ui.composables
+package com.example.paperclip.ui.composables.paperclips
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import java.math.BigInteger
 
 @Composable
 fun Paperclips(
-    nbPaperclips: Int = 0,
+    nbPaperclips: BigInteger = BigInteger("0"),
     onClickMakePaperclips: () -> Unit = {},
 ) {
     Column() {

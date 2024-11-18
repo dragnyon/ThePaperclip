@@ -1,4 +1,6 @@
-package com.example.paperclip.ui.views
+package com.example.paperclip.data
+
+import com.example.paperclip.domain.models.Project
 
 val projects: List<Project> = listOf(
     Project(1, "Improved AutoClippers ", "(750 ops)", "Increases AutoClipper performance 25%"),

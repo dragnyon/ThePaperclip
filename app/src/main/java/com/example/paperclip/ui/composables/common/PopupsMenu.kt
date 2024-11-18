@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.paperclip.R
-import com.example.paperclip.ui.composables.ComputationalResources
-import com.example.paperclip.ui.composables.ProjectsList
+import com.example.paperclip.data.projects
+import com.example.paperclip.ui.composables.compute.ComputationalResources
+import com.example.paperclip.ui.composables.projects.ProjectsList
 import com.example.paperclip.ui.composables.strategicModeling.StrategicModeling
-import com.example.paperclip.ui.views.projects
 
 @Composable
 fun PopupsMenu() {

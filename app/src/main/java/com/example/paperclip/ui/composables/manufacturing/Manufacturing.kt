@@ -1,4 +1,4 @@
-package com.example.paperclip.ui.composables
+package com.example.paperclip.ui.composables.manufacturing
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

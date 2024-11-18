@@ -1,4 +1,4 @@
-package fr.dlecol.paperclips.Investments
+package com.example.paperclip.ui.composables.investments
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues

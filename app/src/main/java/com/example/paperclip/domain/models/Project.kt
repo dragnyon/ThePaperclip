@@ -1,4 +1,4 @@
-package com.example.paperclip.ui.views
+package com.example.paperclip.domain.models
 
 data class Project(
     val id: Int,

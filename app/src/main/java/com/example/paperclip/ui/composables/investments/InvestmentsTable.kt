@@ -1,4 +1,4 @@
-package fr.dlecol.paperclips.Investments
+package com.example.paperclip.ui.composables.investments
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.paperclip.ui.composables
+package com.example.paperclip.ui.composables.business
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,12 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import java.math.BigDecimal
 
 @Composable
 fun Business(
     funds: Double = 0.0,
     unsold: Int = 0,
-    price: Double = 0.0,
+    price: BigDecimal = BigDecimal("0.00"),
     onClickLower: () -> Unit = {},
     onClickRaise: () -> Unit = {},
     demand: Int = 0,
