@@ -9,7 +9,7 @@ object Stage1 {
 
     //Business
     val price: BigDecimal = BigDecimal("0.20")
-    val costMarket: Double = 100.00
+    val costMarket: Double = 1000.00
     val funds: Double = 100000.00
 }
 

@@ -19,17 +19,17 @@ class Stage1ViewModel : ViewModel() {
         when (uiEvent) {
             is OnEvent.OnInit -> {
                 uiState.value = UiState(
-                    Stage1.nbPaperclips,
-                    Stage1.price,
-                    Stage1.funds,
-                    Stage1.costMarket
+                    nbPaperclips = Stage1.nbPaperclips,
+                    price = Stage1.price,
+                    funds = Stage1.funds,
+                    costMarket = Stage1.costMarket
                 )
             }
 
             is OnEvent.OnGenerateClick -> {
                 uiState.value = uiState.value.copy(
                     nbPaperclips = uiState.value.nbPaperclips.inc(),
-                    
+
                     )
             }
 
