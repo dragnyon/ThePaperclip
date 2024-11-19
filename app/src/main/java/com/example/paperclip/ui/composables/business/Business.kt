@@ -73,8 +73,9 @@ fun Business(
             text = "Public Demand: $demand %"
         )
         Row {
-            FilledTonalButton(onClick = onClickMarket) {
+            FilledTonalButton(onClick = onClickMarket, enabled = funds >= costMarket) {
                 Text("Marketing")
+
             }
             Text(
                 text = "Level : $levelMarket"

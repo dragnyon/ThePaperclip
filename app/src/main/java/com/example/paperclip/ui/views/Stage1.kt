@@ -31,6 +31,7 @@ fun Stage1(
             price = uiState.value.price,
             funds = uiState.value.funds,
             costMarket = uiState.value.costMarket,
+            levelMarket = uiState.value.levelMarket,
             onClickRaise = { viewModel.onUiEvent(OnEvent.RaisePrice) },
             onClickLower = { viewModel.onUiEvent(OnEvent.LowerPrice) },
             onClickMarket = { viewModel.onUiEvent(OnEvent.UpgradeMarket) },

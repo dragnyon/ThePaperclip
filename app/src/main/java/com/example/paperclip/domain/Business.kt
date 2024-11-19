@@ -11,7 +11,14 @@ class Business {
 
             val finalFunds = this.value.funds - this.value.costMarket
             val finalCost = this.value.costMarket * 2
-            this.value = this.value.copy(funds = finalFunds, costMarket = finalCost)
+            val finalLevel = this.value.levelMarket + 1
+            if (finalFunds >= 0) {
+                this.value = this.value.copy(
+                    funds = finalFunds,
+                    costMarket = finalCost,
+                    levelMarket = finalLevel
+                )
+            }
 
 
         }

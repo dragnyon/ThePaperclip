@@ -22,7 +22,9 @@ class Stage1ViewModel : ViewModel() {
                     nbPaperclips = Stage1.nbPaperclips,
                     price = Stage1.price,
                     funds = Stage1.funds,
-                    costMarket = Stage1.costMarket
+                    costMarket = Stage1.costMarket,
+                    levelMarket = Stage1.levelMarket
+
                 )
             }
 
