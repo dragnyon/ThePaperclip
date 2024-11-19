@@ -10,6 +10,10 @@ data class UiState(
     //Business
     val price: BigDecimal = BigDecimal("0.0"),
     val costMarket: Double = 0.00,
-    val funds: Double = 0.00,
-    val levelMarket: Int = 0
+    val funds: BigDecimal = BigDecimal("0.0"),
+    val levelMarket: Int = 0,
+    val demand: Int = 0,
+    val unsoldClips: BigInteger = BigInteger("0"),
+    val wires: BigInteger = BigInteger("0"),
+    val clipMakerLevel: Int = 1
 )

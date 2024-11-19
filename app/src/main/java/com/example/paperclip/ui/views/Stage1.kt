@@ -12,11 +12,14 @@ import com.example.paperclip.ui.composables.business.Business
 import com.example.paperclip.ui.composables.manufacturing.Manufacturing
 import com.example.paperclip.ui.composables.messagesBox.MessageBox
 import com.example.paperclip.ui.composables.paperclips.Paperclips
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun Stage1(
     viewModel: Stage1ViewModel = viewModel()
+
+
 ) {
 
     val uiState = viewModel.uiState
@@ -35,6 +38,7 @@ fun Stage1(
             onClickRaise = { viewModel.onUiEvent(OnEvent.RaisePrice) },
             onClickLower = { viewModel.onUiEvent(OnEvent.LowerPrice) },
             onClickMarket = { viewModel.onUiEvent(OnEvent.UpgradeMarket) },
+            demand = uiState.value.demand,
         )
         Manufacturing()
     }

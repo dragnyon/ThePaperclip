@@ -10,8 +10,12 @@ object Stage1 {
     //Business
     val price: BigDecimal = BigDecimal("0.20")
     val costMarket: Double = 1000.00
-    val funds: Double = 100000.00
+    val funds: BigDecimal = BigDecimal("100000")
     val levelMarket: Int = 1
+    val demand: Int = 32
+    val unsoldClips: BigInteger = BigInteger("0")
+    val wires: BigInteger = BigInteger("0")
+    val clipMakerLevel: Int = 1
 }
 
 

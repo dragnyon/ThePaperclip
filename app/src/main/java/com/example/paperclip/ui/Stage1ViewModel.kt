@@ -4,7 +4,14 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.paperclip.data.Stage1
+import com.example.paperclip.domain.Business.Companion.lowerPrice
+import com.example.paperclip.domain.Business.Companion.makePaperClips
+import com.example.paperclip.domain.Business.Companion.raisePrice
+import com.example.paperclip.domain.Business.Companion.updateDemand
 import com.example.paperclip.domain.Business.Companion.upgradeCostMarket
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.math.BigDecimal
 
 class Stage1ViewModel : ViewModel() {
@@ -13,6 +20,7 @@ class Stage1ViewModel : ViewModel() {
 
     init {
         onUiEvent(OnEvent.OnInit)
+        test()
     }
 
     fun onUiEvent(uiEvent: OnEvent) {
@@ -23,32 +31,24 @@ class Stage1ViewModel : ViewModel() {
                     price = Stage1.price,
                     funds = Stage1.funds,
                     costMarket = Stage1.costMarket,
-                    levelMarket = Stage1.levelMarket
-
+                    levelMarket = Stage1.levelMarket,
+                    demand = Stage1.demand
                 )
             }
 
             is OnEvent.OnGenerateClick -> {
-                uiState.value = uiState.value.copy(
-                    nbPaperclips = uiState.value.nbPaperclips.inc(),
-
-                    )
+                uiState.makePaperClips()
             }
 
 
             is OnEvent.RaisePrice -> {
-                uiState.value = uiState.value.copy(
-                    price = uiState.value.price.add(BigDecimal("0.01"))
-
-                )
+                uiState.raisePrice()
             }
 
 
             is OnEvent.LowerPrice -> {
-                uiState.value = uiState.value.copy(
-                    price = uiState.value.price.subtract(BigDecimal("0.01"))
+                uiState.lowerPrice()
 
-                )
             }
 
             is OnEvent.UpgradeMarket -> {
@@ -57,6 +57,20 @@ class Stage1ViewModel : ViewModel() {
             }
 
 
+        }
+    }
+
+
+    private fun test() {
+        viewModelScope.launch {
+            while (isActive) {
+                // Appeler votre fonction ici
+                uiState.updateDemand()
+
+
+                // Attendre 100 millisecondes
+                delay(100)
+            }
         }
     }
 }
