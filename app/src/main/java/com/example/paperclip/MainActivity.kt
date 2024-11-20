@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.paperclip.ui.composables.common.PopupsMenu
 import com.example.paperclip.ui.theme.PaperClipTheme
-import com.example.paperclip.ui.views.Stage1
+import com.example.paperclip.ui.views.stage1.Stage1
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

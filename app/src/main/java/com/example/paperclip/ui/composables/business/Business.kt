@@ -12,11 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import java.math.BigDecimal
+import java.math.BigInteger
 
 @Composable
 fun Business(
     funds: BigDecimal = BigDecimal("0.00"),
-    unsold: Int = 0,
+    unsold: BigInteger = BigInteger("0"),
     price: BigDecimal = BigDecimal("0.00"),
     onClickLower: () -> Unit = {},
     onClickRaise: () -> Unit = {},

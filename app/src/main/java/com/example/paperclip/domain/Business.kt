@@ -1,38 +1,45 @@
 package com.example.paperclip.domain
 
 import androidx.compose.runtime.MutableState
-import com.example.paperclip.domain.Business.Companion.lowerPrice
-import com.example.paperclip.ui.UiState
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.math.BigDecimal
+import com.example.paperclip.ui.views.stage1.UiState
 import kotlin.math.ceil
 
 class Business {
 
     companion object {
 
-        fun MutableState<UiState>.makePaperClips(){
-            this.value = this.value.copy(
-                nbPaperclips = this.value.nbPaperclips.inc(),
+        fun MutableState<UiState>.makePaperClips() {
+            var wires = this.value.wires
+            var clips = this.value.nbPaperclips
+            var unsoldClips = this.value.unsoldClips
 
+            val res = wires.compareTo("1".toBigInteger())
+
+            if (res == 1 || res == 0) {
+                clips = clips.inc()
+                unsoldClips = unsoldClips.inc()
+                wires = wires.dec()
+
+                this.value = this.value.copy(
+                    nbPaperclips = clips,
+                    unsoldClips = unsoldClips,
+                    wires = wires
                 )
+            }
         }
-        
-        
-        
+
+
         fun MutableState<UiState>.upgradeCostMarket() {
 
             val finalFunds = this.value.funds - this.value.costMarket.toBigDecimal()
             val finalCost = this.value.costMarket * 2
             val finalLevel = this.value.levelMarket + 1
 
-                this.value = this.value.copy(
-                    funds = finalFunds,
-                    costMarket = finalCost,
-                    levelMarket = finalLevel
-                )
+            this.value = this.value.copy(
+                funds = finalFunds,
+                costMarket = finalCost,
+                levelMarket = finalLevel
+            )
 
         }
 
@@ -53,14 +60,14 @@ class Business {
         }
 
         fun MutableState<UiState>.updateDemand() {
-            val demand = this.value.demand
+            var demand = this.value.demand
             val price = this.value.price
             val levelMarket = this.value.levelMarket
-            
-            val demandValue = ceil((levelMarket * 10) / (price.toDouble() + 1)).toInt()
+
+            demand = ceil((levelMarket * 10) / (price.toDouble() + 1)).toInt()
 
             this.value = this.value.copy(
-                demand = demandValue
+                demand = demand
             )
         }
 
@@ -82,27 +89,5 @@ class Business {
                 )
             }
         }
-
-        //fun MutableState<UiState>.autoClipperProduction() {
-        //  val wires = this.value.wires
-        //  val clipmakerLevel = this.value.clipmakerLevel
-        //  var clips = this.value.clips
-        //  var unsoldClips = this.value.unsoldClips
-//
-        //          if (wire >= clipmakerLevel) {
-        //      clips = clips + clipmakerLevel
-        //      unsoldClips = unsoldClips + clipmakerLevel
-        //      this.value = this.value.copy(
-        //          clips = clips,
-        //          unsoldClips = unsoldClips,
-        //          wire = wire - clipmakerLevel
-        //      )
-        //  }
-        //}
-
-
-
-
-
     }
 }
