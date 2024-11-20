@@ -1,4 +1,4 @@
-package com.example.paperclip.ui.views
+package com.example.paperclip.ui.views.stage1
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
@@ -6,13 +6,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.paperclip.ui.OnEvent
-import com.example.paperclip.ui.Stage1ViewModel
 import com.example.paperclip.ui.composables.business.Business
 import com.example.paperclip.ui.composables.manufacturing.Manufacturing
 import com.example.paperclip.ui.composables.messagesBox.MessageBox
 import com.example.paperclip.ui.composables.paperclips.Paperclips
-import kotlinx.coroutines.delay
 
 
 @Composable
@@ -39,8 +36,17 @@ fun Stage1(
             onClickLower = { viewModel.onUiEvent(OnEvent.LowerPrice) },
             onClickMarket = { viewModel.onUiEvent(OnEvent.UpgradeMarket) },
             demand = uiState.value.demand,
+            unsold = uiState.value.unsoldClips
         )
-        Manufacturing()
+        Manufacturing(
+            funds = uiState.value.funds,
+            onClickAutoClippers = { viewModel.onUiEvent(OnEvent.MakeClipper) },
+            costAutoClippers = uiState.value.clipperCost,
+            nbAutoClippers = uiState.value.clipMakerLevel,
+            wires = uiState.value.wires,
+            costWire = uiState.value.wireCost.toInt(),
+            onClickWire = { viewModel.onUiEvent(OnEvent.BuyWire) },
+        )
     }
 }
 

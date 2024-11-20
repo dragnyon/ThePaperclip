@@ -6,12 +6,16 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
+import java.math.BigDecimal
+import java.math.BigInteger
 
 @Composable
 fun Manufacturing(
+    funds: BigDecimal = BigDecimal("0.00"),
     clipsPerSecond: Int = 0,
-    wires: Int = 0,
+    wires: BigInteger = BigInteger("0"),
     onClickWire: () -> Unit = {},
     costWire: Int = 0,
     onClickMegaClippers: () -> Unit = {},
@@ -34,7 +38,7 @@ fun Manufacturing(
             text = "Clips per Second : $clipsPerSecond"
         )
         Row {
-            FilledTonalButton(onClick = onClickWireBuyer) {
+            FilledTonalButton(onClick = onClickWireBuyer, enabled = false) {
                 Text("WireBuyer")
             }
             Text(
@@ -43,7 +47,7 @@ fun Manufacturing(
             )
         }
         Row {
-            FilledTonalButton(onClick = onClickWire) {
+            FilledTonalButton(onClick = onClickWire, enabled = funds >= costWire.toBigDecimal()) {
                 Text("Wire")
             }
             Text(
@@ -55,9 +59,9 @@ fun Manufacturing(
             text = "Cost : \$ $costWire"
         )
 
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
 
-            FilledTonalButton(onClick = onClickAutoClippers) {
+            FilledTonalButton(onClick = onClickAutoClippers, enabled = funds >= costAutoClippers.toBigDecimal()) {
                 Text("AutoClippers")
             }
 
@@ -70,9 +74,9 @@ fun Manufacturing(
             text = "Cost : \$ $costAutoClippers"
         )
 
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
 
-            FilledTonalButton(onClick = onClickMegaClippers) {
+            FilledTonalButton(onClick = onClickMegaClippers, enabled = false) {
                 Text("MegaClippers")
             }
 
