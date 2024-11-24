@@ -1,10 +1,11 @@
 package com.example.paperclip.domain
 
 import androidx.compose.runtime.MutableState
+import com.example.paperclip.domain.Business.Companion.raisePrice
 import com.example.paperclip.ui.views.stage1.UiState
-import java.math.BigDecimal
+
 import java.math.BigInteger
-import java.math.RoundingMode
+
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
@@ -50,7 +51,7 @@ class Business {
 
         fun MutableState<UiState>.raisePrice() {
             this.value = this.value.copy(
-                price = this.value.price + 0.01
+                price = Math.round((this.value.price + 0.01) * 100) / 100.0
             )
         }
 
@@ -58,7 +59,7 @@ class Business {
 
             if (this.value.price > 0.01) {
                 this.value = this.value.copy(
-                    price = this.value.price - 0.01
+                    price = Math.round((this.value.price - 0.01) * 100) / 100.0
                 )
             }
         }
@@ -72,7 +73,7 @@ class Business {
             val curveMarket = 1.1.pow((levelMarket - 1).toDouble())
             val prestigeU = this.value.prestigeU
 
-            demand = ceil(((((0.80 / price) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
+            demand = Math.round(((((0.80 / price) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
             demand += ((demand / 10) * prestigeU)
             this.value = this.value.copy(
                 demand = demand
