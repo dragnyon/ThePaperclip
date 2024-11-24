@@ -13,7 +13,7 @@ import java.math.BigInteger
 
 @Composable
 fun Manufacturing(
-    funds: BigDecimal = BigDecimal("0.00"),
+    funds: Double = 0.00,
     clipsPerSecond: Int = 0,
     wires: BigInteger = BigInteger("0"),
     onClickWire: () -> Unit = {},
@@ -47,7 +47,7 @@ fun Manufacturing(
             )
         }
         Row {
-            FilledTonalButton(onClick = onClickWire, enabled = funds >= costWire.toBigDecimal()) {
+            FilledTonalButton(onClick = onClickWire, enabled = funds >= costWire) {
                 Text("Wire")
             }
             Text(
@@ -61,7 +61,7 @@ fun Manufacturing(
 
         Row(verticalAlignment = Alignment.CenterVertically) {
 
-            FilledTonalButton(onClick = onClickAutoClippers, enabled = funds >= costAutoClippers.toBigDecimal()) {
+            FilledTonalButton(onClick = onClickAutoClippers, enabled = funds >= costAutoClippers) {
                 Text("AutoClippers")
             }
 

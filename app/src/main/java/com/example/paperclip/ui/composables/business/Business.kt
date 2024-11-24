@@ -16,9 +16,9 @@ import java.math.BigInteger
 
 @Composable
 fun Business(
-    funds: BigDecimal = BigDecimal("0.00"),
+    funds: Double = 0.00,
     unsold: BigInteger = BigInteger("0"),
-    price: BigDecimal = BigDecimal("0.00"),
+    price: Double = 0.00,
     onClickLower: () -> Unit = {},
     onClickRaise: () -> Unit = {},
     demand: Int = 0,
@@ -74,7 +74,7 @@ fun Business(
             text = "Public Demand: $demand %"
         )
         Row {
-            FilledTonalButton(onClick = onClickMarket, enabled = funds >= costMarket.toBigDecimal()) {
+            FilledTonalButton(onClick = onClickMarket, enabled = funds >= costMarket) {
                 Text("Marketing")
 
             }

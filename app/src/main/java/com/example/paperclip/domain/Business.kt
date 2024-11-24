@@ -2,7 +2,11 @@ package com.example.paperclip.domain
 
 import androidx.compose.runtime.MutableState
 import com.example.paperclip.ui.views.stage1.UiState
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.RoundingMode
 import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.pow
 
 class Business {
@@ -32,7 +36,7 @@ class Business {
 
         fun MutableState<UiState>.upgradeCostMarket() {
 
-            val finalFunds = this.value.funds - this.value.costMarket.toBigDecimal()
+            val finalFunds = this.value.funds - this.value.costMarket
             val finalCost = this.value.costMarket * 2
             val finalLevel = this.value.levelMarket + 1
 
@@ -46,22 +50,21 @@ class Business {
 
         fun MutableState<UiState>.raisePrice() {
             this.value = this.value.copy(
-                price = this.value.price.plus("0.01".toBigDecimal()),
+                price = this.value.price + 0.01
             )
         }
 
         fun MutableState<UiState>.lowerPrice() {
-            val res = this.value.price.compareTo("0.01".toBigDecimal())
 
-            if (res == 1) {
+            if (this.value.price > 0.01) {
                 this.value = this.value.copy(
-                    price = this.value.price.minus("0.01".toBigDecimal())
+                    price = this.value.price - 0.01
                 )
             }
         }
 
         fun MutableState<UiState>.updateDemand() {
-            var demand = this.value.demand
+            var demand: Int
             val price = this.value.price
             val levelMarket = this.value.levelMarket
             val marketingEffectiveness = this.value.marketingEffectiveness
@@ -69,8 +72,8 @@ class Business {
             val curveMarket = 1.1.pow((levelMarket - 1).toDouble())
             val prestigeU = this.value.prestigeU
 
-            demand = ceil(((((0.80 / price.toDouble()) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
-            demand += ((demand / 10) * prestigeU).toInt()
+            demand = ceil(((((0.80 / price) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
+            demand += ((demand / 10) * prestigeU)
             this.value = this.value.copy(
                 demand = demand
             )
@@ -82,16 +85,34 @@ class Business {
             val demand = this.value.demand
             val margin = this.value.price
             var funds = this.value.funds
+            var income = this.value.income
+            val transaction: Int
+            val clipsSold = this.value.clipsSold
+            val number: Double = floor(0.7 * demand.toDouble().pow(1.15))
+            if (Math.random() < (demand.toDouble()/100))
+            {
+                if (unsoldClips.compareTo("0".toBigInteger()) == 1) {
+                    if( number > unsoldClips.toDouble()) {
+                        transaction = (unsoldClips.toDouble() * margin * 1000.0).toInt() / 1000
+                        income += transaction
+                        funds = kotlin.math.floor((funds + transaction) * 100) / 100
+                        clipsSold.add((number.toInt()).toBigInteger())
+                        unsoldClips = BigInteger("0")
+                    }
+                    else {
+                        transaction = (number * margin * 1000.0).toInt() / 1000
+                        income += transaction
+                        funds = kotlin.math.floor((funds + transaction) * 100) / 100
+                        clipsSold.add((number.toInt()).toBigInteger())
+                        unsoldClips.minus(number.toInt().toBigInteger());
+                    }
 
-            if (unsoldClips.compareTo("0".toBigInteger()) == 1) {
-                val sellQty = unsoldClips.min(demand.toBigInteger())
-                unsoldClips = unsoldClips.minus(sellQty)
-                funds = funds.plus(sellQty.toBigDecimal().multiply(margin))
-
-                this.value = this.value.copy(
-                    unsoldClips = unsoldClips,
-                    funds = funds
-                )
+                    this.value = this.value.copy(
+                        unsoldClips = unsoldClips,
+                        funds = funds,
+                        income = income
+                    )
+                }
             }
         }
     }

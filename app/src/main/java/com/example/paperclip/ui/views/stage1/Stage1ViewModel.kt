@@ -18,15 +18,16 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.math.BigInteger
+import kotlin.math.floor
 
 data class UiState(
     //Paperclips
     val nbPaperclips: BigInteger = BigInteger("0"),
 
     //Business
-    val price: BigDecimal = BigDecimal("0.25"),
+    val price: Double = 0.25,
     val costMarket: Double = 100.0,
-    val funds: BigDecimal = BigDecimal("10000.0"),
+    val funds: Double = 10000.0,
     val levelMarket: Int = 1,
     val demand: Int = 0,
     val unsoldClips: BigInteger = BigInteger("0"),
@@ -40,6 +41,8 @@ data class UiState(
     val demandBoost: Int = 1,
     val marketingEffectiveness: Int = 1,
     val prestigeU: Int = 0,
+    val income: Double = 0.0,
+    val clipsSold: BigInteger = BigInteger("0"),
 )
 
 
@@ -94,7 +97,7 @@ class Stage1ViewModel : ViewModel() {
             while (isActive) {
                 // Appeler votre fonction ici
                 uiState.updateDemand()
-
+                uiState.sellClips()
                 // Attendre 100 millisecondes
                 delay(100)
             }
@@ -104,17 +107,11 @@ class Stage1ViewModel : ViewModel() {
         viewModelScope.launch {
             while (isActive) {
                 uiState.autoClipperProduction() // Appelle la fonction de production
-                delay(1000) // Produit toutes les 100ms
+                delay(1000) // Produit toutes les 1000ms
             }
         }
 
-        // Coroutine pour la vente de trombones
-        viewModelScope.launch {
-            while (isActive) {
-                uiState.sellClips() // Appelle la fonction de vente
-                delay(1000) // Vend toutes les 1 seconde
-            }
-        }
+
     }
 }
 

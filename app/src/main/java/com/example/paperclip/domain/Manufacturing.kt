@@ -10,12 +10,11 @@ class Manufacturing {
             var wires = this.value.wires
             var wireCost = this.value.wireCost
             var funds = this.value.funds
-            val res = funds.compareTo(10.toBigDecimal())
 
-            if (res == 1 || res == 0) {
+            if (funds>= 10.0) {
                 wires = wires.plus(this.value.wireSupply.toBigInteger())
-                funds = funds.minus(wireCost.toBigDecimal())
 
+                funds -= wireCost
                 this.value = this.value.copy(
                     wires = wires,
                     funds = funds
@@ -29,10 +28,9 @@ class Manufacturing {
             var clipMakerLevel = this.value.clipMakerLevel
             var clipperCost = this.value.clipperCost
 
-            val res = funds.compareTo(clipperCost.toBigDecimal())
+            if (funds >= clipperCost) {
 
-            if (res == 1 || res == 0) {
-                funds = funds.minus(clipperCost.toBigDecimal())
+                funds -= clipperCost
                 clipMakerLevel = clipMakerLevel.inc()
                 clipperCost = 1.1.pow(clipMakerLevel.toDouble()) + 5
 
