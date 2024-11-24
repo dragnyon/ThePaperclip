@@ -1,12 +1,8 @@
 package com.example.paperclip.domain
 
 import androidx.compose.runtime.MutableState
-import com.example.paperclip.domain.Business.Companion.raisePrice
 import com.example.paperclip.ui.views.stage1.UiState
-
 import java.math.BigInteger
-
-import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 
@@ -89,21 +85,20 @@ class Business {
             var income = this.value.income
             val transaction: Double
             var clipsSold = this.value.clipsSold
-            val number: Double = floor(0.7 * (demand.toDouble()/10).pow(1.15))
-            if (Math.random() < (demand.toDouble()/1000))
-            {
+            val number: Double = floor(0.7 * (demand.toDouble() / 10).pow(1.15))
+            if (Math.random() < (demand.toDouble() / 1000)) {
                 if (unsoldClips.compareTo("0".toBigInteger()) == 1) {
-                    if( number > unsoldClips.toDouble()) {
+                    if (number > unsoldClips.toDouble()) {
                         transaction = ((unsoldClips.toDouble() * margin * 1000.0) / 1000)
                         income += transaction
                         funds = ((funds + transaction) * 100) / 100
                         clipsSold = clipsSold.add((number.toInt()).toBigInteger())
                         unsoldClips = BigInteger("0")
-                    }
-                    else {
+                    } else {
                         transaction = ((number * margin * 1000.0) / 1000)
                         income += transaction
-                        funds = ((funds + transaction) * 100) / 100
+                        //funds = ((funds + transaction) * 100) / 100
+                        funds += transaction
                         clipsSold = clipsSold.add((number.toInt()).toBigInteger())
                         unsoldClips = unsoldClips.minus((number.toInt()).toBigInteger())
                     }

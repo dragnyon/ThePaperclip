@@ -11,7 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import java.math.BigDecimal
+import com.example.paperclip.ui.animation.animateNumberAsState
+import com.example.paperclip.ui.animation.roundToTwoDecimals
 import java.math.BigInteger
 
 @Composable
@@ -28,13 +29,17 @@ fun Business(
     avgRev: Double = 0.0,
     avgClipsSold: Int = 0
 ) {
-    Column() {
+
+
+    val animatedUnsold = animateNumberAsState(unsold)
+    val animatedFunds = animateNumberAsState(funds).roundToTwoDecimals()
+    Column {
         Text(
             text = "Business"
         )
         HorizontalDivider(thickness = 2.dp)
         Text(
-            text = "Available Funds: \$ $funds"
+            text = "Available Funds: \$ $animatedFunds"
         )
         Text(
             text = "Avg. Rev. per sec : \$ $avgRev"
@@ -44,7 +49,8 @@ fun Business(
         )
 
         Text(
-            text = "Unsold Inventory: $unsold"
+            text = "Unsold Inventory: $animatedUnsold"
+
         )
 
         Row(
@@ -84,7 +90,7 @@ fun Business(
         }
 
         Text(
-            text = "Cost : \$ $costMarket"
+            text = "Cost : \$ $costMarket."
         )
     }
 }

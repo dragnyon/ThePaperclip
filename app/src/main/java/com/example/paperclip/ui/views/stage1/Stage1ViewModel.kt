@@ -16,9 +16,7 @@ import com.example.paperclip.domain.Manufacturing.Companion.makeClipper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
 import java.math.BigInteger
-import kotlin.math.floor
 
 data class UiState(
     //Paperclips
@@ -27,7 +25,7 @@ data class UiState(
     //Business
     val price: Double = 0.25,
     val costMarket: Double = 100.0,
-    val funds: Double = 10000.0,
+    val funds: Double = 100000000.00,
     val levelMarket: Int = 1,
     val demand: Int = 0,
     val unsoldClips: BigInteger = BigInteger("5"),

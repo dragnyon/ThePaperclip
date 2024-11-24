@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.example.paperclip.ui.animation.animateNumberAsState
 import java.math.BigInteger
 
 @Composable
@@ -11,10 +12,12 @@ fun Paperclips(
     nbPaperclips: BigInteger = BigInteger("0"),
     onClickMakePaperclips: () -> Unit = {},
 ) {
-    Column() {
+
+    val animatePaperclip = animateNumberAsState(nbPaperclips, 1000)
+    Column {
 
         Text(
-            text = "Paperclips: $nbPaperclips"
+            text = "Paperclips: $animatePaperclip"
         )
 
         FilledTonalButton(onClick = onClickMakePaperclips) {
