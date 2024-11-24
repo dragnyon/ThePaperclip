@@ -39,6 +39,7 @@ data class UiState(
     val wireSupply: Int = 1000,
     val demandBoost: Int = 1,
     val marketingEffectiveness: Int = 1,
+    val prestigeU: Int = 0,
 )
 
 

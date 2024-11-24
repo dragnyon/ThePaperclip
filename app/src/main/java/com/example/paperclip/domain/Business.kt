@@ -67,9 +67,10 @@ class Business {
             val marketingEffectiveness = this.value.marketingEffectiveness
             val demandBoost = this.value.demandBoost
             val curveMarket = 1.1.pow((levelMarket - 1).toDouble())
-
+            val prestigeU = this.value.prestigeU
 
             demand = ceil(((((0.80 / price.toDouble()) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
+            demand += ((demand / 10) * prestigeU).toInt()
             this.value = this.value.copy(
                 demand = demand
             )
