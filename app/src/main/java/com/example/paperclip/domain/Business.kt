@@ -87,31 +87,32 @@ class Business {
             val margin = this.value.price
             var funds = this.value.funds
             var income = this.value.income
-            val transaction: Int
-            val clipsSold = this.value.clipsSold
-            val number: Double = floor(0.7 * demand.toDouble().pow(1.15))
-            if (Math.random() < (demand.toDouble()/100))
+            val transaction: Double
+            var clipsSold = this.value.clipsSold
+            val number: Double = floor(0.7 * (demand.toDouble()/10).pow(1.15))
+            if (Math.random() < (demand.toDouble()/1000))
             {
                 if (unsoldClips.compareTo("0".toBigInteger()) == 1) {
                     if( number > unsoldClips.toDouble()) {
-                        transaction = (unsoldClips.toDouble() * margin * 1000.0).toInt() / 1000
+                        transaction = ((unsoldClips.toDouble() * margin * 1000.0) / 1000)
                         income += transaction
-                        funds = kotlin.math.floor((funds + transaction) * 100) / 100
-                        clipsSold.add((number.toInt()).toBigInteger())
+                        funds = ((funds + transaction) * 100) / 100
+                        clipsSold = clipsSold.add((number.toInt()).toBigInteger())
                         unsoldClips = BigInteger("0")
                     }
                     else {
-                        transaction = (number * margin * 1000.0).toInt() / 1000
+                        transaction = ((number * margin * 1000.0) / 1000)
                         income += transaction
-                        funds = kotlin.math.floor((funds + transaction) * 100) / 100
-                        clipsSold.add((number.toInt()).toBigInteger())
-                        unsoldClips.minus(number.toInt().toBigInteger());
+                        funds = ((funds + transaction) * 100) / 100
+                        clipsSold = clipsSold.add((number.toInt()).toBigInteger())
+                        unsoldClips = unsoldClips.minus((number.toInt()).toBigInteger())
                     }
 
                     this.value = this.value.copy(
                         unsoldClips = unsoldClips,
                         funds = funds,
-                        income = income
+                        income = income,
+                        clipsSold = clipsSold,
                     )
                 }
             }

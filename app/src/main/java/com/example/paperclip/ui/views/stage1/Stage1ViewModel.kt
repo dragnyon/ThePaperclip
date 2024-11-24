@@ -22,7 +22,7 @@ import kotlin.math.floor
 
 data class UiState(
     //Paperclips
-    val nbPaperclips: BigInteger = BigInteger("0"),
+    val nbPaperclips: BigInteger = BigInteger("5"),
 
     //Business
     val price: Double = 0.25,
@@ -30,7 +30,7 @@ data class UiState(
     val funds: Double = 10000.0,
     val levelMarket: Int = 1,
     val demand: Int = 0,
-    val unsoldClips: BigInteger = BigInteger("0"),
+    val unsoldClips: BigInteger = BigInteger("5"),
     val clipMakerLevel: Int = 0,
     val clipperCost: Double = 5.0,
     val wires: BigInteger = BigInteger("1000"),
