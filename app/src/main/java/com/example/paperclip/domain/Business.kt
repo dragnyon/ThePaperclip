@@ -3,6 +3,7 @@ package com.example.paperclip.domain
 import androidx.compose.runtime.MutableState
 import com.example.paperclip.ui.views.stage1.UiState
 import kotlin.math.ceil
+import kotlin.math.pow
 
 class Business {
 
@@ -63,9 +64,12 @@ class Business {
             var demand = this.value.demand
             val price = this.value.price
             val levelMarket = this.value.levelMarket
+            val marketingEffectiveness = this.value.marketingEffectiveness
+            val demandBoost = this.value.demandBoost
+            val curveMarket = 1.1.pow((levelMarket - 1).toDouble())
 
-            demand = ceil((levelMarket * 10) / (price.toDouble() + 1)).toInt()
 
+            demand = ceil(((((0.80 / price.toDouble()) * curveMarket * marketingEffectiveness) * demandBoost) * 10)).toInt()
             this.value = this.value.copy(
                 demand = demand
             )

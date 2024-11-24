@@ -26,7 +26,7 @@ data class UiState(
     //Business
     val price: BigDecimal = BigDecimal("0.25"),
     val costMarket: Double = 100.0,
-    val funds: BigDecimal = BigDecimal("0.0"),
+    val funds: BigDecimal = BigDecimal("10000.0"),
     val levelMarket: Int = 1,
     val demand: Int = 0,
     val unsoldClips: BigInteger = BigInteger("0"),
@@ -37,6 +37,8 @@ data class UiState(
     val wireBasePrice: Double = 15.0,
     val wirePriceTimer: Int = 0,
     val wireSupply: Int = 1000,
+    val demandBoost: Int = 1,
+    val marketingEffectiveness: Int = 1,
 )
 
 
